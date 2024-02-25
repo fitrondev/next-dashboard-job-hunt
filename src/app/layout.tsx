@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layouts/Sidebar";
+import Header from "@/components/layouts/Header/Header";
 
 const epilogue = Epilogue({ subsets: ["latin"] });
 
@@ -24,7 +25,10 @@ export default function RootLayout({
               <Sidebar />
             </div>
             <div className="col-span-3 overflow-auto lg:col-span-5 lg:border-1 w-[82%]">
-              <div className="px-5 py-6 lg:px-8">{children}</div>
+              <div className="px-5 py-6 lg:px-8">
+                <Header />
+                {children}
+              </div>
             </div>
           </div>
         </main>
