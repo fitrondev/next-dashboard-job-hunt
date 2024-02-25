@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 // icons
 import { IoHomeOutline } from "react-icons/io5";
@@ -11,11 +12,14 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 import { LuCalendarDays } from "react-icons/lu";
 
 const SidebarMenu = () => {
+  const router = useRouter();
+
   return (
     <nav className="space-y-3">
       <Button
         variant={"ghost"}
         className="w-full justify-start rounded-none hover:text-primary"
+        onClick={() => router.push("/")}
       >
         <IoHomeOutline className="mr-2 text-lg" />
         Home
