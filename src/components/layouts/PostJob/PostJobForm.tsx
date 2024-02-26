@@ -24,13 +24,19 @@ import {
 } from "@/components/ui/select";
 import FieldInput from "@/components/organism/FieldInput/FieldInput";
 import InputSkils from "@/components/organism/InputSkils/InputSkils";
+import CKEditor from "@/components/organism/CKEditor/CKEditor";
 
 type PostJobFormProps = {
   form: UseFormReturn<z.infer<typeof jobFormSchema>>;
   onSubmit: (values: z.infer<typeof jobFormSchema>) => void;
+  editorLoaded?: boolean;
 };
 
-const PostJobForm: React.FC<PostJobFormProps> = ({ form, onSubmit }) => {
+const PostJobForm: React.FC<PostJobFormProps> = ({
+  form,
+  onSubmit,
+  editorLoaded,
+}) => {
   return (
     <>
       <Form {...form}>
@@ -174,6 +180,50 @@ const PostJobForm: React.FC<PostJobFormProps> = ({ form, onSubmit }) => {
             subtitle="You can add required skills."
           >
             <InputSkils form={form} />
+          </FieldInput>
+
+          <FieldInput
+            title="Job Description"
+            subtitle="Please describe the job in detail."
+          >
+            <CKEditor
+              form={form}
+              name="jobDescription"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Responsibilities"
+            subtitle="Outline the main responsibilities."
+          >
+            <CKEditor
+              form={form}
+              name="responsibility"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Who You Are"
+            subtitle="Add your preferred candidate requirements."
+          >
+            <CKEditor
+              form={form}
+              name="whoYouAre"
+              editorLoaded={editorLoaded}
+            />
+          </FieldInput>
+
+          <FieldInput
+            title="Nice to Haves"
+            subtitle="Add any additional skills or experience."
+          >
+            <CKEditor
+              form={form}
+              name="niceToHaves"
+              editorLoaded={editorLoaded}
+            />
           </FieldInput>
         </form>
       </Form>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -15,6 +16,8 @@ import PostJobForm from "@/components/layouts/PostJob/PostJobForm";
 type PostJobPageProps = {};
 
 const PostJobPage: React.FC<PostJobPageProps> = () => {
+  const [editorLoaded, setEditorLoaded] = useState<boolean>(false);
+
   // Define form.
   const form = useForm<z.infer<typeof jobFormSchema>>({
     resolver: zodResolver(jobFormSchema),
@@ -27,6 +30,10 @@ const PostJobPage: React.FC<PostJobPageProps> = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  useEffect(() => {
+    setEditorLoaded(true);
+  }, []);
   return (
     <>
       <div className="inline-flex items-center gap-2 cursor-pointer hover:text-primary">
@@ -43,7 +50,11 @@ const PostJobPage: React.FC<PostJobPageProps> = () => {
 
       <Separator />
 
-      <PostJobForm form={form} onSubmit={onSubmit} />
+      <PostJobForm
+        form={form}
+        onSubmit={onSubmit}
+        editorLoaded={editorLoaded}
+      />
     </>
   );
 };
